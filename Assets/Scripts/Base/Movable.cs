@@ -109,6 +109,7 @@ public class Movable : MonoBehaviour
         motionVector = forceVector;
         motionVector.x *= horizontalForceDir;
         state = State.Hurting;
+        stunCounter = MAX_STUN_TIME;
         PlayAnim("Hurt");
         TakeDmg(dmg);
     }

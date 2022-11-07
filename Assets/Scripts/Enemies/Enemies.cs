@@ -85,7 +85,6 @@ public class Enemies : Movable
     {
         base.GetHit(forceVector, isRightOfPlayer, dmg);
         attackController.ResetAttack();
-        stunCounter = MAX_STUN_TIME;
     }
     protected override void Dead()
     {

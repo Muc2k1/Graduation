@@ -6,7 +6,7 @@ public class PlayerHurtBox : Checker
 {
     private PlayerController player;
     private Vector2 forceVector;
-    private bool isRightOfPlayer;
+    private bool isRightOfPlayer; //Need to change name
     private void Start()
     {
         player = obj.GetComponent<PlayerController>();
@@ -17,7 +17,17 @@ public class PlayerHurtBox : Checker
         {
             int dmg = other.GetComponent<EnemiesAttack>().dmg; //use later
             forceVector = other.GetComponent<EnemiesAttack>().ForceVector;
-            isRightOfPlayer = (transform.position.x < PlayerController.Instance.transform.position.x);
+            isRightOfPlayer = (transform.position.x > other.transform.position.x);
+            player.GetHit(forceVector, isRightOfPlayer);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Traps"))
+        {
+            int dmg = other.GetComponent<Trap>().dmg; //use later
+            forceVector = Vector2.up * 5f;
+            isRightOfPlayer = (transform.position.x < other.transform.position.x);
             player.GetHit(forceVector, isRightOfPlayer);
         }
     }

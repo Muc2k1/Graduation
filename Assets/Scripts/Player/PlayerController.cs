@@ -360,7 +360,10 @@ public class PlayerController : Movable
     }
     public override void GetHit(Vector2 forceVector, bool isRightOfPlayer, int dmg = 1)
     {
-        base.GetHit(forceVector, isRightOfPlayer, dmg);
-        mainVCam.ShakeCamera(3f, 0.1f);
+        if (state != State.Hurting)
+        {
+            base.GetHit(forceVector, isRightOfPlayer, dmg);
+            mainVCam.ShakeCamera(3f, 0.1f);
+        }
     }
 }
